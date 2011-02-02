@@ -1,0 +1,44 @@
+#############################################################################
+##
+## .bashrc.local
+##
+## Author: Simos Xenitellis (simos.lists@googlemail.com)
+##
+## This is the .bashrc.local file, part of the BASHRC project
+## at http://bashrc.sourceforge.net
+##
+## Here you add your aliases, sets, completions and bindkeys that you want
+## to override from the default settings.
+
+# grep Exclusions
+GREP_EXCLUSIONS=.svn:CVS:.git:.hg:.bzr
+
+#grep_min=2.5.3
+grep_ver=`grep --v | awk '{if (NR==1) print $NF}' | awk -F. '{print($1>2 || ($1==2 && $2>5) || ($1==2 && $2==5 && $3>=3))}'`
+
+if [ $grep_ver == "1" ]; then
+    for excl in `printf $GREP_EXCLUSIONS | tr ':' ' '`
+    do
+        GREP_OPTIONS="$GREP_OPTIONS --exclude-dir=$excl"
+    done
+else
+    for excl in `printf $GREP_EXCLUSIONS | tr ':' ' '`
+    do
+        GREP_OPTIONS="$GREP_OPTIONS --exclude=\*$excl\*"
+    done
+fi
+export GREP_OPTIONS="$GREP_OPTIONS --exclude=*~"
+#export GREP_OPTIONS="$GREP_OPTIONS --exclude=\*.svn\*"
+
+# Aliases
+alias start-vnc='vncserver -geometry 1440x900 -depth 24'
+alias kill-vnc="vncserver -kill `pgrep -fl -U jpui Xvnc | awk '{print $3}'`"
+alias xauth-list="echo \$DISPLAY | awk -F: '{if (NF) print \":\"\$2}' | xargs xauth list"
+grepr ()
+{
+    grep -r $* --color=always . | less -R
+}
+grepri ()
+{
+    grep -ri $* --color=always . | less -R
+}
