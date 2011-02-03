@@ -32,7 +32,7 @@ export GREP_OPTIONS="$GREP_OPTIONS --exclude=*~"
 
 # Aliases
 alias start-vnc='vncserver -geometry 1440x900 -depth 24'
-alias kill-vnc="vncserver -kill `pgrep -fl -U jpui Xvnc | awk '{print $3}'`"
+alias kill-vnc="vncserver -kill \`pgrep -fl -U \$LOGNAME Xvnc | awk '{print \$3}'\`"
 alias xauth-list="echo \$DISPLAY | awk -F: '{if (NF) print \":\"\$2}' | xargs xauth list"
 grepr ()
 {
