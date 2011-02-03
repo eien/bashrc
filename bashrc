@@ -40,7 +40,15 @@ if [ -z "$PS1" ]; then
 	return
 fi
 
-if [ -e "$HOME/.bashrc_common" ]; then
+BASH_COMPLETION_COMPAT_DIR=$HOME/.bash/bash_completion.d
+if [ -f "/etc/bash_completion" ]; then
+	. /etc/bash_completion
+elif [ -f "$HOME/.bash/bash_completion" ]; then
+	BASH_COMPLETION=$HOME/.bash/bash_completion
+	. $BASH_COMPLETION
+fi
+
+if [ -f "$HOME/.bashrc_common" ]; then
 	source $HOME/.bashrc_common
 fi
 

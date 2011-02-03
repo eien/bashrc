@@ -33,8 +33,12 @@ set bashrc_version=0.0.1
 #   - shows username@currenthost currentdirectory
 #   - can double-click with mouse to select so latter can paste somewhere
 # Source: "UNIX Power Tools" from O'Reilly, note from Tim Cera (timcera@sourceforge.net).
-PS1='\n\e[1m\u\e[m@\e[4m\h\e[m \e[7m$PWD\e[m\n\$ '
-PS1='\n\e[1m\u\e[m@\e[4m\h\e[m \e[7m$PWD\e[m\n$(__git_ps1 "(%s) ")\$ '
+declare -f __git_ps1 > /dev/null
+if [ $? -eq 0 ]; then
+	PS1='\n\e[1m\u\e[m@\e[4m\h\e[m \e[7m$PWD\e[m\n$(__git_ps1 "(%s) ")\$ '
+else
+	PS1='\n\e[1m\u\e[m@\e[4m\h\e[m \e[7m$PWD\e[m\n\$ '
+fi
 #PS1='[\u@\h \W$(__git_ps1 " (%s)")]\$ '
 
 # Prompt used when waiting for stufffor 'for' or 'while'...
