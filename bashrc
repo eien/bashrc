@@ -44,7 +44,12 @@ BASH_COMPLETION_COMPAT_DIR=$HOME/.bash/bash_completion.d
 if [ -f "/etc/bash_completion" ]; then
 	. /etc/bash_completion
 elif [ -f "$HOME/.bash/bash_completion" ]; then
-	BASH_COMPLETION=$HOME/.bash/bash_completion
+	if [ "${BASH_VERSINFO[0]}" -eq "3" ] && [ "${BASH_VERSINFO[1]}" -lt "20" ]; then
+		BASH_COMPLETION=$HOME/.bash/bash_completionf894f07
+	else
+		BASH_COMPLETION=$HOME/.bash/bash_completion
+	fi
+
 	. $BASH_COMPLETION
 fi
 
