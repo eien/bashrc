@@ -23,10 +23,10 @@ alias rd='rmdir -v'
 
 ## Standard aliases - convenience
 # Color syntax
-solarized=$HOME/.bash/solarized/ls-colors-solarized/dircolors
-if [ -f $solarized ]; then
-	dircolors=$solarized
-else
+solarized=$HOME/.bash/dircolors-solarized/dircolors
+solarized_theme=ansi-dark
+dircolors="${solarized}.${solarized_theme}"
+if [ ! -f ${dircolors} ]; then
 	dircolors=
 fi
 

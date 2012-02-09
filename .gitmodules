@@ -3,7 +3,10 @@
 	url = https://github.com/sigurdga/gnome-terminal-colors-solarized.git
 [submodule "solarized"]
 	path = solarized
-	url = https://github.com/seebi/solarized.git
+	url = git://github.com/seebi/dircolors-solarized.git
 [submodule "solarized-gedit"]
 	path = solarized-gedit
 	url = https://github.com/craig552uk/solarized-gedit.git
+[submodule "dircolors-solarized"]
+	path = dircolors-solarized
+	url = git://github.com/seebi/dircolors-solarized.git
