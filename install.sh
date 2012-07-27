@@ -2,7 +2,7 @@
 set -e
 
 # bashrc
-path=`ls -1 $(pwd)/bashrc`
+path=`ls -1 $(pwd)/.bashrc`
 pushd ..
 ln -s ${path}
 popd

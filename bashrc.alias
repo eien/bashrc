@@ -6,6 +6,7 @@
 ##
 ## This is the .bashrc.alias file, part of the BASHRC project
 ## at http://bashrc.sourceforge.net
+UNAME=$(uname -s)
 
 ## Standard aliases - security
 # "-i" asks for confirmation when deleting. This is good.
@@ -33,6 +34,11 @@ fi
 if [ -x /usr/bin/dircolors ]; then
     eval "`dircolors -b ${dircolors}`"
     alias ls='ls --color=auto'
+	alias sl='ls --color=auto'
+fi
+if [ "${UNAME}" == "Darwin" ]; then
+	alias ls='ls -G'
+	alias sl='ls -G'
 fi
 
 # Typicaly "more" does not allow you to use the arrow keys/etc for navigation.
@@ -85,7 +91,6 @@ alias -- -='cd -'
 alias maek='make'
 alias alais='alias'
 alias csl='clear'
-alias sl='ls --color'
 
 ## Aliases specific to Bash
 # What is the help command? Type "ls" and hit F1. Will show a help line.
