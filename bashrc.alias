@@ -59,6 +59,10 @@ alias mess='clear ; tail -f /var/log/messages'
 if [ -e `which vim` ]; then
 	alias vi='vim'
 fi
+if [ "${UNAME}" == "Darwin" ] && [ -e `which mvim` ]; then
+	alias gvim='mvim'
+	alias gvimdiff='mvimdiff'
+fi
 # Pressing "x" and enter exits.
 alias x='exit'
 # Quite handy, type "ff test.c" to find "test.c". 
